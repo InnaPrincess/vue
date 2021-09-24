@@ -8,8 +8,8 @@
 </head>
 <body>
     <?php 
-    $iii = 998889;
-    echo $iii;
+    $pop = 998889;
+    echo $pop;
     ?>
 </body>
 </html>
