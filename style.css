@@ -71,10 +71,10 @@ body {
     width: 40px;
     height: 40px;
     background-color: #FFC200;
+    border-radius:10px;
 }
 
 .header-img-2 {
-    vertical-align: center;
     margin: 0 10px 0 10px;
     align-items: center;
     background: #EAEAEA;
@@ -103,9 +103,6 @@ body {
     margin-right: 25px;
 }
 
-.menu div p {
-    /* color: #FFFFFF; */
-}
 
 .main-title {
     opacity: 0.5;
@@ -127,7 +124,7 @@ body {
     margin-right: 40px;
 }
 .more{
-    font-size: 
+    font-size:30px; 
 }
 .menu-tasks {
     padding: 15px 0 30px 40px;
@@ -190,8 +187,8 @@ color: #FFFFFF;
 }
 
 .num {
-    padding: 2px 5px 2px 5px;
-    ;
+    margin-left: 10px;
+    padding: 2px 6px 2px 6px;
     color: #131313;
     background-color: #FFC200;
     border-radius: 50%;
@@ -238,10 +235,9 @@ color: #FFFFFF;
     width: 12px;
     height: 9px;
     padding: 15px;
-    border: 1px solid #red;
+    /* border: 1px solid red; */
     border-radius: 50%;
     margin: 0 20px 0 20px;
-    ;
 }
 
 .color-send {
