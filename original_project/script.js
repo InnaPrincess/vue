@@ -17,7 +17,7 @@ let taskOpen   = document.querySelector('.tO'),
         taskOpen.textContent = numTaskOpen;
         console.log(numTaskContent);
     }
-    else if (numTaskOpen == 0){
+    else if (numTaskOpen === 0){
         alert("У вас нет открітіх заданий");
     }
     
