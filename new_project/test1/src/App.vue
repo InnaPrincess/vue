@@ -1,13 +1,10 @@
 <template>
- <div class="wraper">
+    <div class="wraper">
         <div class="menu">
             <div class="menu-logo">
-                <!-- <img class='img-1' src="Logo@3x.svg" width='22' height='19' alt="Logo-icon"> -->
                 <p>PROJECTUS</p>
-                <!-- <img class='img-2' src="Search@3x.svg" width='16' height='16' alt="Serach-icon"> -->
             </div>
             <div class="menu-user">
-                <!-- <img class='logo-img' src='logo.jpg' width='48' height='48' alt=' '> -->
                 <div class="user-info">
                     <p class="name">Jean Gonsales</p><br>
                     <p class="profesional">Product Owner</p>
@@ -15,18 +12,18 @@
                 <p class="more">...</p>
             </div>
             <div class="menu-tasks">
-                <div class="menu-complit-tasks">
-                    <p class="tasks tC">372</p><br><p class="tasks-text">Complited Tasks</p>
+                <div class="menu-complit-tasks" v-on:click="openPopap()">
+                    <p class="tasks tC" >{{complitedTask}}</p><br><p class="tasks-text">Complited Tasks</p>
                 </div>
                 <div>
-                    <p class="tasks tO">11</p><br><p class="tasks-text">Open Tasks</p>
+                    <p class="tasks tO">{{openTasks}}</p><br><p class="tasks-text">Open Tasks</p>
                 </div>
             </div>
             <ul class="menu-ul">
                 <li class="menu-decoration">MENU</li>
                 <li>Home</li>
                 <li>My Tasks</li>
-                <li>Notifikations<span class="num">3</span>
+                <li>Notifikations<span class="num">{{notification}}</span>
                 </li>
             </ul>
         </div>
@@ -41,16 +38,17 @@
                         </li><li><a href=' '><img class="us-icon" src="./assets/logo3.jpg " alt=" "></a>
                         </li><li><a class='share' href=' '>Share</a>
                         </li><li class="chat">
-                            <a href=' '><img src='./assets/Shape@1x.svg' alt='ico1'>Chat</a>
+                         <a href=' '><img src='./assets/Shape@1x.svg' alt='ico1'>Chat</a>
                         </li></ul></div></div>
             <div class="menu-header">
-                <ul><li><a href=' '>Tasks</a></li>
+                <ul>
+                    <li><a href=' '>Tasks</a></li>
                     <li><a href=' '>Kanban</a></li>
                     <li><a class='activ' href=' '>Activity</a></li>
                     <li><a href=' '>Calendar</a></li>
                     <li><a href=' '>Files</a></li>
                 </ul>
-            </div>
+             </div>
             <div class="main">
                 <p class="main-title">TODAY</p>
                 <ul>
@@ -71,10 +69,7 @@
                     <li class='main-message'>
                        <span class='main-message-message color_upload'><img src="./assets/3.png" alt=" "></span> 
                         <p class='main-message-text'>quisquam dicta, corporis atque amet iure veritatis, repellat, molestiae delectus sequi quos aliquid aperiam nemo.
-                            <br><img src="./assets/image_1.jpg" width="100" height="100" alt=" ">
-                            <img src="./assets/image_2.jpg" width="100" height="100" alt=" ">
-                            <img src="./assets/image_3.jpg" width="100" height="100" alt=" ">
-                            <img src="./assets/image_4.jpg" width="100" height="100" alt=" ">
+                            <img  v-for="(item, index) in collectionImg" :key="index" v-on:click="notificFunction(index)" :src=imgFunc(item) width="100" height="100" alt=" ">
                         </p>
                         <p class='main-time'>8:40 PM</p>
                     </li>
@@ -82,11 +77,43 @@
             </div>
         </div>
     </div>
-
 </template>
-<script>
+
+<script lang="ts">
+    import { defineComponent } from 'vue'
+        export default defineComponent({
+            name: 'App',
+            created() {
+            console.log('test')
+        },
+    data() {
+        return {
+           complitedTask: 372,
+           openTasks: 11,
+           collectionImg: ["image_1", "image_2", "image_3", "image_4"],
+           notification: 3,
+        }
+    },
+    methods: {
+        openPopap(){ 
+            if (confirm('Are you sure you want to change the number of tasks?') && this.openTasks > 0){
+                this.complitedTask = this.complitedTask + 1
+                this.openTasks = this.openTasks - 1;
+            }
+            else if (this.openTasks === 0){
+                alert("У вас нет открітіх заданий");   
+            }
+        },
+        imgFunc(numImage){
+            return require ('./assets/' + numImage + '.jpg');
+        },
+        notificFunction(ni){
+            this.notification = ni;
+        }
+    }
+})
 </script>
 
 <style lang="scss">
-@import "style.scss";
+    @import "style.scss";
 </style>
