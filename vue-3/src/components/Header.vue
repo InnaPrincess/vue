@@ -24,15 +24,20 @@
 .menu-header
   ul
     li
-      a(href=" ") Tasks
+      router-link(:to="{name:'Tasks'}"
+                 active-class="activ")
+        | Tasks
     li
       a(href=" ") Kanban
     li
-      a.activ(href=" ") Activity
+      router-link(:to="{name:'Activity'}"
+                 active-class="activ")
+        | Activity
     li
       a(href=" ") Calendar
     li
       a(href=" ") Files
+    
 </template>
 <script lang="ts">
 export default {

@@ -1,46 +1,46 @@
-<template lang="pug">
-.menu
-  .menu-logo
-    p PROJECTUS
-  .menu-user
-    .user-info
-      p.name Jean Gonsales
-      br
-      p.profesional Product Owner
-    p.more ...
-  .menu-tasks
-    .menu-complit-tasks(v-on:click="openPopap()")
-      p.tasks.tC {{ complitedTask }}
-      br
-      p.tasks-text Complited Tasks
-    div
-      p.tasks.tO {{ openTasks }}
-      br
-      p.tasks-text Open Tasks
-  ul.menu-ul
-    li.menu-decoration MENU
-    li Home
-    li My Tasks
-    li
-      | Notifikations
-      span.num {{ notification }}
+<template>
+<div class="menu">
+  <div class="menu-logo">
+    <p>PROJECTUS</p>
+  </div>
+  <div class="menu-user">
+    <div class="user-info">
+      <p class="name">{{`${user1.firstName} ${user1.lastName}`}}</p><br/>
+      <p class="profesional">{{user1.position}}</p>
+    </div>
+    <p class="more">...</p>
+  </div>
+  <div class="menu-tasks">
+     <div class="menu-complit-tasks" @click='openPopap'> 
+      <p class="tasks tC">{{ user1.task.complitedTask }}</p><br/>
+      <p class="tasks-text">Complited Tasks</p>
+    </div>
+    <div>
+      <p class="tasks tO">{{ user1.task.openTasks }}</p><br/>
+      <p class="tasks-text">Open Tasks</p>
+    </div>
+  </div>
+  <ul class="menu-ul">
+    <li class="menu-decoration">MENU</li>
+    <li>Home</li>
+    <li>My Tasks</li>
+    <li>Notifikations<span class="num">{{ user1.notification }}</span></li>
+  </ul>
+</div>
+      
 </template>
-<script lang="ts">
+<script lang="">
 export default {
-  name: 'SideBar',
-  data() {
-    return {
-      complitedTask: 372,
-      openTasks: 11,
-      notification: 3
-    };
-  },
+  name: 'Sidebar',
+  props: {
+    user1: {
+    required: true
+  }},
   methods: {
     openPopap() {
-      if (confirm('Are you sure you want to change the number of tasks?') && this.openTasks > 0) {
-        this.complitedTask = this.complitedTask + 1;
-        this.openTasks = this.openTasks - 1;
-      } else if (this.openTasks === 0) {
+      if (confirm('Are you sure you want to change the number of tasks?') && this.user1.task.openTasks > 0) {
+        this.$emit("calcOpenTask") 
+      } else if (this.user1.task.openTasks === 0) {
         alert('У вас нет открытых заданий');
       }
     },
