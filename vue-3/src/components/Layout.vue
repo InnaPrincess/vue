@@ -6,12 +6,12 @@
         router-view(@notificationIndex="notificationIn")
 </template>
 <script lang="ts">
-import IUser from '@/types/user'; 
+import {IUser} from '@/types/user'; 
 import SideBar from '@/components/SideBar.vue'; // SideBar компоненты боковой панели
 import Header from '@/components/Header.vue'; // Header заголовок
 import Content from '@/components/Content.vue'; // Content содержимое
-
-export default {
+import {defineComponent} from 'vue';
+export default defineComponent ({
   name: 'Layout',
   components: {
     SideBar,
@@ -63,10 +63,10 @@ export default {
       this.user.task.complitedTask = this.user.task.complitedTask + 1;
       this.user.task.openTasks = this.user.task.openTasks - 1;
     },
-    notificationIn(e) {
+    notificationIn(e: number) {
       this.user.notification = e;
     },
   },
-};
+});
 </script>
 <style lang=""></style>
