@@ -1,35 +1,35 @@
 <template lang="pug">
 .wraper
-    SideBar(:user1='user' @calcOpenTask='taskUpdate') 
+    SideBar(:user1="user" @calcOpenTask="taskUpdate") 
     .header
         Header
-        router-view(@notificationIndex='notificationIn')
+        router-view(@notificationIndex="notificationIn")
 </template>
 <script lang="ts">
-
-import SideBar from "@/components/SideBar.vue"; // SideBar компоненты боковой панели
-import Header from "@/components/Header.vue"; // Header заголовок 
-import Content from "@/components/Content.vue"; // Content содержимое 
-
-export default {
-    name: 'Layout',
-    components: {
-        SideBar,
-        Header,
-        Content
-    },
+import {IUser} from '@/types/user'; 
+import SideBar from '@/components/SideBar.vue'; // SideBar компоненты боковой панели
+import Header from '@/components/Header.vue'; // Header заголовок
+import Content from '@/components/Content.vue'; // Content содержимое
+import {defineComponent} from 'vue';
+export default defineComponent ({
+  name: 'Layout',
+  components: {
+    SideBar,
+    Header,
+    Content,
+  },
   data() {
     return {
-        user: {
-            firstName: 'Jean',
-            lastName: 'Gonsales',
-            position: 'Product Owner',
-            notification: 3,
-            task: {
-                complitedTask: 372,
-                openTasks: 11,
-            }
+      user: {
+        firstName: "Jean",
+        lastName: "Gonsales",
+        position: "Product Owner",
+        notification: 3,
+        task: {
+          complitedTask: 372,
+          openTasks: 11,
         },
+      } as IUser,
       collectionImg: ['image_1', 'image_2', 'image_3', 'image_4'],
       fMessages: [
         {
@@ -55,20 +55,18 @@ export default {
           text: 'quisquam dicta, corporis atque amet iure veritatis, repellat, molestiae delectus sequi quos aliquidaperiam nemo.',
         },
       ],
-    }
+    };
   },
   methods: {
-      taskUpdate() {
-        //   alert('heir')
-        this.user.task.complitedTask = this.user.task.complitedTask + 1;
-        this.user.task.openTasks = this.user.task.openTasks - 1;
-      },
-      notificationIn(event){
-          this.user.notification = event;
-      }
-  }
-}
+    taskUpdate() {
+      //   alert('heir')
+      this.user.task.complitedTask = this.user.task.complitedTask + 1;
+      this.user.task.openTasks = this.user.task.openTasks - 1;
+    },
+    notificationIn(e: number) {
+      this.user.notification = e;
+    },
+  },
+});
 </script>
-<style lang="">
-    
-</style>
+<style lang=""></style>

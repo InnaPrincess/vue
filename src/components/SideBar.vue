@@ -17,7 +17,7 @@
     </div>
     <div>
       <p class="tasks tO">{{ user1.task.openTasks }}</p><br/>
-      <p class="tasks-text">Open Tasks</p>
+      <p class="tasks-text" @click='clickOpenTask'>Open Tasks</p>
     </div>
   </div>
   <ul class="menu-ul">
@@ -36,20 +36,23 @@ export default {
     user1: {
     required: true
   }},
-  // data() {
-  //   return {
-  //     complitedTask: 372,
-  //     openTasks: 11
-  //   };
-  // },
   methods: {
     openPopap() {
       if (confirm('Are you sure you want to change the number of tasks?') && this.user1.task.openTasks > 0) {
-        this.$emit('calcOpenTask') 
+        this.$emit("calcOpenTask") 
       } else if (this.user1.task.openTasks === 0) {
         alert('У вас нет открытых заданий');
       }
     },
+    clickOpenTask(){
+      if (!this.user1.task.openTasks ){ 
+        alert('У вас нет открытых заданий');
+        return false;
+      }
+      this.$router.push({
+        name: 'Tasks'
+        })
+    }
   },
 };
 </script>

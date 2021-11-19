@@ -28,7 +28,9 @@
                  active-class="activ")
         | Tasks
     li
-      a(href=" ") Kanban
+      router-link(:to="{name:'Kanban'}"
+                 active-class="activ")
+        | Kanban
     li
       router-link(:to="{name:'Activity'}"
                  active-class="activ")
