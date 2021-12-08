@@ -1,6 +1,7 @@
-<template lang="pug">
-div
-  Layout
+<template>
+<div>
+  <Layout></Layout>
+</div>
 </template>
 <script lang="ts">
 import Layout from '@/components/Layout.vue';
@@ -11,7 +12,7 @@ export default defineComponent({
     Layout,
   },
   created() {
-    console.log('test');
+    console.log('testggg');
   }
 });
 </script>

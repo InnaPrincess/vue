@@ -1,88 +1,82 @@
-<template lang="pug">
-.wraper
-  .menu
-    .menu-logo
-      p PROJECTUS
-    .menu-user
-      .user-info
-        p.name Jean Gonsales
-        br
-        p.profesional Product Owner
-      p.more ...
-    .menu-tasks
-      .menu-complit-tasks(v-on:click="openPopap()")
-        p.tasks.tC {{ complitedTask }}
-        br
-        p.tasks-text Complited Tasks
-      div
-        p.tasks.tO {{ openTasks }}
-        br
-        p.tasks-text Open Tasks
-    ul.menu-ul
-      li.menu-decoration MENU
-      li Home
-      li My Tasks
-      li
-        | Notifikations
-        span.num {{ notification }}
-  .header
-    .hed-menu
-      .header-block-1
-        img.header-img(src="./assets/Shapes@2x.png " alt=" ")
-        p Website Redesign
-        p.header-img-2 ...
-      .header-block-2
-        ul.header-users-icons
-          li
-            a(href=" ")
-              img.us-icon(src="./assets/logo1.jpg " alt=" ")
-          li
-            a(href=" ")
-              img.us-icon(src="./assets/logo2.jpg " alt=" ")
-          li
-            a(href=" ")
-              img.us-icon(src="./assets/logo3.jpg " alt=" ")
-          li
-            a.share(href=" ") Share
-          li.chat
-            a(href=" ")
-              img(src="./assets/Shape@1x.svg" alt="ico1")
-              | Chat
-    .menu-header
-      ul
-        li
-          a(href=" ") Tasks
-        li
-          a(href=" ") Kanban
-        li
-          a.activ(href=" ") Activity
-        li
-          a(href=" ") Calendar
-        li
-          a(href=" ") Files
-    .main
-      p.main-title TODAY
-      ul
-        div(v-for="fMessage in fMessages" :key="fMessage.id")
-          li.main-message(v-if="fMessage.standart === 1")
-            span.main-message-message(:class="fMessage.spanclas")
-              img(:src="require('./assets/Icon@3x.svg')" alt="")
-            p.main-message-text {{ fMessage.text }}
-            p.main-time {{ fMessage.time }}
-          li.main-message(v-if="fMessage.standart === 2")
-            span.main-message-message(:class="fMessage.spanclas")
-              img(:src="require('./assets/1.png')" alt="")
-            p.main-message-text {{ fMessage.text }}
-            p.main-time {{ fMessage.time }}
-          li.main-message(v-if="fMessage.standart === 3")
-            p.main-message-text.my-write {{ fMessage.text }}
-          li.main-message(v-if="fMessage.standart === 4")
-            span.main-message-message(:class="fMessage.spanclas")
-              img(:src="require('./assets/3.png')" alt="")
-            p.main-message-text
-              | {{ fMessage.text }}
-              img(v-for="(item, index) in collectionImg" :key="index" v-on:click="notificFunction(index)" :src="require('./assets/' + item + '.jpg')" width="100" height="100" alt=" ")
-            p.main-time {{ fMessage.time }}
+<template>
+<div class="wraper">
+  <div class="menu">
+    <div class="menu-logo">
+      <p>PROJECTUS</p>
+    </div>
+    <div class="menu-user">
+      <div class="user-info">
+        <p class="name">Jean Gonsales</p><br/>
+        <p class="profesional">Product Owner</p>
+      </div>
+      <p class="more">...</p>
+    </div>
+    <div class="menu-tasks">
+      <div class="menu-complit-tasks" v-on:click="openPopap()">
+        <p class="tasks tC">{{ complitedTask }}</p><br/>
+        <p class="tasks-text">Complited Tasks</p>
+      </div>
+      <div>
+        <p class="tasks tO">{{ openTasks }}</p><br/>
+        <p class="tasks-text">Open Tasks</p>
+      </div>
+    </div>
+    <ul class="menu-ul">
+      <li class="menu-decoration">MENU</li>
+      <li>Home</li>
+      <li>My Tasks</li>
+      <li>Notifikations<span class="num">{{ notification }}</span></li>
+    </ul>
+  </div>
+  <div class="header">
+    <div class="hed-menu">
+      <div class="header-block-1"><img class="header-img" src="./assets/Shapes@2x.png " alt=" "/>
+        <p>Website Redesign</p>
+        <p class="header-img-2">...</p>
+      </div>
+      <div class="header-block-2">
+        <ul class="header-users-icons">
+          <li><a href=" "><img class="us-icon" src="./assets/logo1.jpg " alt=" "/></a></li>
+          <li><a href=" "><img class="us-icon" src="./assets/logo2.jpg " alt=" "/></a></li>
+          <li><a href=" "><img class="us-icon" src="./assets/logo3.jpg " alt=" "/></a></li>
+          <li><a class="share" href=" ">Share</a></li>
+          <li class="chat"><a href=" "><img src="./assets/Shape@1x.svg" alt="ico1"/>Chat</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="menu-header">
+      <ul>
+        <li><a href=" ">Tasks</a></li>
+        <li><a href=" ">Kanban</a></li>
+        <li><a class="activ" href=" ">Activity</a></li>
+        <li><a href=" ">Calendar</a></li>
+        <li><a href=" ">Files</a></li>
+      </ul>
+    </div>
+    <div class="main">
+      <p class="main-title">TODAY</p>
+      <ul>
+        <div v-for="aMessage in aMessages" :key="aMessage.id">
+          <li class="main-message" v-if="aMessage.standart === 1"><span class="main-message-message" :class="aMessage.spanclas"><img :src="require('./assets/Icon@3x.svg')" alt=""/></span>
+            <p class="main-message-text">{{ aMessage.text }}</p>
+            <p class="main-time">{{ aMessage.time }}</p>
+          </li>
+          <li class="main-message" v-if="aMessage.standart === 2"><span class="main-message-message" :class="aMessage.spanclas"><img :src="require('./assets/1.png')" alt=""/></span>
+            <p class="main-message-text">{{ aMessage.text }}</p>
+            <p class="main-time">{{ aMessage.time }}</p>
+          </li>
+          <li class="main-message" v-if="aMessage.standart === 3">
+            <p class="main-message-text my-write">{{ aMessage.text }}</p>
+          </li>
+          <li class="main-message" v-if="aMessage.standart === 4"><span class="main-message-message" :class="aMessage.spanclas"><img :src="require('./assets/3.png')" alt=""/></span>
+            <p class="main-message-text">{{ aMessage.text }}<img v-for="(item, index) in collectionImg" :key="index" v-on:click="notificFunction(index)" :src="require('./assets/' + item + '.jpg')" width="100" height="100" alt=" "/></p>
+            <p class="main-time">{{ aMessage.time }}</p>
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
 </template>
 <script lang="ts">
 import {defineComponent} from 'vue';
@@ -97,7 +91,7 @@ export default defineComponent({
       openTasks: 11,
       collectionImg: ['image_1', 'image_2', 'image_3', 'image_4'],
       notification: 3,
-      fMessages: [
+      aMessages: [
         {
           standart: 1,
           spanclas: 'color-send',

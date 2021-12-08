@@ -3,7 +3,7 @@
   <div class="menu-logo">
     <p>PROJECTUS</p>
   </div>
-  <div class="menu-user">
+  <div class="menu-user" @click="ppk">
     <div class="user-info">
       <p class="name">{{`${user1.firstName} ${user1.lastName}`}}</p><br/>
       <p class="profesional">{{user1.position}}</p>
@@ -11,13 +11,13 @@
     <p class="more">...</p>
   </div>
   <div class="menu-tasks">
-     <div class="menu-complit-tasks" @click='openPopap'> 
+    <div class="menu-complit-tasks" @click="openPopap">
       <p class="tasks tC">{{ user1.task.complitedTask }}</p><br/>
       <p class="tasks-text">Complited Tasks</p>
     </div>
     <div>
       <p class="tasks tO">{{ user1.task.openTasks }}</p><br/>
-      <p class="tasks-text" @click='clickOpenTask'>Open Tasks</p>
+      <p class="tasks-text" @click="clickOpenTask">Open Tasks</p>
     </div>
   </div>
   <ul class="menu-ul">
@@ -27,7 +27,6 @@
     <li>Notifikations<span class="num">{{ user1.notification }}</span></li>
   </ul>
 </div>
-      
 </template>
 <script lang="">
 export default {
@@ -52,6 +51,9 @@ export default {
       this.$router.push({
         name: 'Tasks'
         })
+    },
+    ppk(){
+      console.log(this.user1.lastName)
     }
   },
 };

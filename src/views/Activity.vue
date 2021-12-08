@@ -2,21 +2,21 @@
 <div class="main">
   <p class="main-title">TODAY</p>
   <ul>
-    <div v-for="fMessage in fMessages" :key="fMessage.id">
-      <li class="main-message" v-if="fMessage.standart === 1"><span class="main-message-message" :class="fMessage.spanclas"><img :src="require('@/assets/Icon@3x.svg')" alt=""/></span>
-        <p class="main-message-text">{{ fMessage.text }}</p>
-        <p class="main-time">{{ fMessage.time }}</p>
+    <div v-for="aMessage in aMessages" :key="aMessage.id">
+      <li class="main-message" v-if="aMessage.standart === 1"><span class="main-message-message" :class="aMessage.spanclas"><img :src="require('@/assets/Icon@3x.svg')" alt=""/></span>
+        <p class="main-message-text">{{ aMessage.text }}</p>
+        <p class="main-time">{{ aMessage.time }}</p>
       </li>
-      <li class="main-message" v-if="fMessage.standart === 2"><span class="main-message-message" :class="fMessage.spanclas"><img :src="require('@/assets/1.png')" alt=""/></span>
-        <p class="main-message-text">{{ fMessage.text }}</p>
-        <p class="main-time">{{ fMessage.time }}</p>
+      <li class="main-message" v-if="aMessage.standart === 2"><span class="main-message-message" :class="aMessage.spanclas"><img :src="require('@/assets/1.png')" alt=""/></span>
+        <p class="main-message-text">{{ aMessage.text }}</p>
+        <p class="main-time">{{ aMessage.time }}</p>
       </li>
-      <li class="main-message" v-if="fMessage.standart === 3">
-        <p class="main-message-text my-write">{{ fMessage.text }}</p>
+      <li class="main-message" v-if="aMessage.standart === 3">
+        <p class="main-message-text my-write">{{ aMessage.text }}</p>
       </li>
-      <li class="main-message" v-if="fMessage.standart === 4"><span class="main-message-message" :class="fMessage.spanclas"><img :src="require('@/assets/3.png')" alt=""/></span>
-        <p class="main-message-text">{{ fMessage.text }}<img v-for="(item, index) in collectionImg" :key="index" v-on:click="notificFunction(index)" :src="require('@/assets/' + item + '.jpg')" width="100" height="100" alt=" "/></p>
-        <p class="main-time">{{ fMessage.time }}</p>
+      <li class="main-message" v-if="aMessage.standart === 4"><span class="main-message-message" :class="aMessage.spanclas"><img :src="require('@/assets/3.png')" alt=""/></span>
+        <p class="main-message-text">{{ aMessage.text }}<img v-for="(item, index) in collectionImg" :key="index" v-on:click="notificFunction(index)" :src="require('@/assets/' + item + '.jpg')" width="100" height="100" alt=" "/></p>
+        <p class="main-time">{{ aMessage.time }}</p>
       </li>
     </div>
   </ul>
@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       collectionImg: ['image_1', 'image_2', 'image_3', 'image_4'],
-      fMessages: [
+      aMessages: [
         {
           standart: 1,
           spanclas: 'color-send',

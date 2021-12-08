@@ -1,17 +1,19 @@
-<template lang="pug">
-.wraper
-    SideBar(:user1="user" @calcOpenTask="taskUpdate") 
-    .header
-        Header
-        router-view(@notificationIndex="notificationIn")
+<template>
+  <div class="wraper">
+    <SideBar :user1="user" @calcOpenTask="taskUpdate"> </SideBar>
+    <div class="header">
+      <Header></Header>
+      <router-view @notificationIndex="notificationIn"></router-view>
+    </div>
+  </div>
 </template>
 <script lang="ts">
-import {IUser} from '@/types/user'; 
+import {IUser} from '@/types/user';
 import SideBar from '@/components/SideBar.vue'; // SideBar компоненты боковой панели
 import Header from '@/components/Header.vue'; // Header заголовок
 import Content from '@/components/Content.vue'; // Content содержимое
 import {defineComponent} from 'vue';
-export default defineComponent ({
+export default defineComponent({
   name: 'Layout',
   components: {
     SideBar,
@@ -21,9 +23,9 @@ export default defineComponent ({
   data() {
     return {
       user: {
-        firstName: "Jean",
-        lastName: "Gonsales",
-        position: "Product Owner",
+        firstName: 'Jean',
+        lastName: 'Gonsales',
+        position: 'Product Owner',
         notification: 3,
         task: {
           complitedTask: 372,
@@ -31,7 +33,7 @@ export default defineComponent ({
         },
       } as IUser,
       collectionImg: ['image_1', 'image_2', 'image_3', 'image_4'],
-      fMessages: [
+      aMessages: [
         {
           standart: 1,
           spanclas: 'color-send',

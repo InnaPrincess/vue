@@ -9,7 +9,7 @@
 <script lang="">
 import ComingSoon from '@/components/ComingSoon.vue';
 export default {
-  name: 'Kanban',
+  name: 'Calendar',
   components: {ComingSoon}
 };
 </script>

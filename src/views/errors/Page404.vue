@@ -1,7 +1,7 @@
 <template>
-  <div>
-      <h2>Page not found Error 404</h2> 
-  </div>
+<div>
+  <h2>Page not found Error 404</h2>
+</div>
 </template>
 
 <script lang='ts'>
