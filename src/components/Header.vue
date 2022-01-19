@@ -2,7 +2,7 @@
 <div class="hed-menu">
   <div class="header-block-1"><img class="header-img" src="@/assets/Shapes@2x.png " alt=" "/>
     <p>Website Redesign</p>
-    <p class="header-img-2">...</p>
+    <span class="header-img-2"></span>
   </div>
   <div class="header-block-2">
     <ul class="header-users-icons">

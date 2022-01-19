@@ -7,18 +7,17 @@
     </div>
   </div>
 </template>
+
 <script lang="ts">
 import {IUser} from '@/types/user';
 import SideBar from '@/components/SideBar.vue'; // SideBar компоненты боковой панели
 import Header from '@/components/Header.vue'; // Header заголовок
-import Content from '@/components/Content.vue'; // Content содержимое
 import {defineComponent} from 'vue';
 export default defineComponent({
   name: 'Layout',
   components: {
     SideBar,
     Header,
-    Content,
   },
   data() {
     return {
