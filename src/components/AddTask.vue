@@ -51,7 +51,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 export default defineComponent({
-  emits: ['addTask']
+  // emits: ['addTask']
   data() {
     return {
       newTask: {
@@ -66,12 +66,18 @@ export default defineComponent({
       if (!this.newTask.text || !this.newTask.title || !this.newTask.time) {
         return false;
       }
-      this.$emit('addNewTask', {   
-        time: this.newTask.time,
-        text: this.newTask.text,
-        title: this.newTask.title,
-
-      })
+      // console.log('login', this.newTask.text, this.newTask.title, this.newTask.time)
+      this.$emit(
+        'addNewTask',
+        {
+          time: this.newTask.time,
+          text: this.newTask.text,
+          title: this.newTask.title,
+        },
+        (this.newTask.time = ''),
+        (this.newTask.text = ''),
+        (this.newTask.title = ''),
+      );
     },
   },
 });

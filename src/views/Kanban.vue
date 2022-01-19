@@ -30,15 +30,16 @@
         >
           <div class="board__header board__style">
             <i class="fas fa-dot-circle"></i>
-            <span>{{ category.title }}</span>
+            <span v-html="category.title"></span>
+            
             <i class="fas fa-ellipsis-h"></i>
+            <span v-if="category.add">
+              <AddTask @addNewTask="addTasks"/>
+              </span>
           </div>
-
-          <div v-for="item in category.tasks" 
-          @dragstart="onDragStart($event, item)" 
-          class="draggable">
-            <div class="board__boxes board__style" 
-            draggable="true">
+            
+          <div v-for="item in category.tasks" @dragstart="onDragStart($event, item)" class="draggable">
+            <div class="board__boxes board__style" draggable="true">
               <div class="image-wrapper">
                 <img v-if="item.background" :src="item.background" />
               </div>
@@ -46,7 +47,7 @@
                 <li v-for="(color, index) in item.colors" :key="index" :style="'--section-color:' + color"></li>
               </ul>
               <p>{{ item.text }}</p>
-              <div class="board__boxes__info" >
+              <div class="board__boxes__info">
                 <i class="fas fa-paperclip"></i>
                 <span>{{ item.number }}</span>
                 <img v-for="(image, index) in item.images" :key="index" :src="image" />
@@ -63,11 +64,12 @@
 </template>
 <script lang="ts">
 // import File from "@/script.js"
+import AddTask from '@/components/AddTask.vue';
 import {defineComponent, ref, computed, reactive} from 'vue';
 import ComingSoon from '@/components/ComingSoon.vue';
 export default defineComponent({
   name: 'Kanban',
-  components: {ComingSoon},
+  components: {ComingSoon, AddTask},
   setup() {
     //   const colorTask = {
     //   red: '--section-color: #df8395',
@@ -82,12 +84,7 @@ export default defineComponent({
         title: 'task 1',
         text: 'Step 1 - UX Map',
         status: 'todo',
-          colors: [
-          '#df8395', 
-          '#fe9734',
-          '#ffd169',
-          '#311f7d',
-          ],
+        colors: ['#df8395', '#fe9734', '#ffd169', '#311f7d'],
         date: '2021-12-09 14:23',
         background: 'https://source.unsplash.com/BMO_9hKVPbU',
         images: [
@@ -118,12 +115,7 @@ export default defineComponent({
         title: 'task 3',
         text: 'Step 3 - Understand',
         status: 'todo',
-        colors: [
-          '#df8395', 
-          '#fe9734',
-          '#ffd169',
-          '#311f7d',
-          ],
+        colors: ['#df8395', '#fe9734', '#ffd169', '#311f7d'],
         date: '2021-12-09 14:26',
         background: '',
         images: [
@@ -227,8 +219,9 @@ export default defineComponent({
     const categories = [
       {
         id: 0,
-        title: 'To du list',
+        title: '<a href="#win2" class="main-title1">To du list</a> ',
         type: 'todo',
+        add: 'true'
       },
       {
         id: 1,
@@ -250,6 +243,10 @@ export default defineComponent({
       }
     }
     function onDrop(e: DragEvent, newStatus) {
+      if (newStatus ==  'todo') {
+        return false;
+      }
+       
       const {dataTransfer} = e;
       if (dataTransfer) {
         const itemId = parseInt(dataTransfer.getData('itemId'));
@@ -275,7 +272,6 @@ export default defineComponent({
         };
       });
     });
-
     return {
       kanbanList,
       items,
@@ -290,7 +286,6 @@ export default defineComponent({
 
 <style lang="scss">
 // @import '@/style_kanban.scss';
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
 :root {
   --white: #002035;
@@ -305,7 +300,7 @@ export default defineComponent({
   /* --main-grid-rows: 80px 120px minmax(600px, calc(100vh - 200px)); */
 }
 /*--------------------------------------*/
-.container * {
+.container  main, .board__style, .board__boxes__sections{
   margin: 0;
   box-sizing: border-box;
   padding: 0;
@@ -318,7 +313,6 @@ export default defineComponent({
 }
 /*-----------------MAIN SECTION---------------------*/
 main {
-  
 }
 
 main .main__header {
@@ -386,7 +380,6 @@ main .main__kanban {
   // justify-content: flex-start;
   // overflow-x: auto;
   // scrollbar-width: none;
-
 }
 main .main__kanban::-webkit-scrollbar {
   width: 0px;

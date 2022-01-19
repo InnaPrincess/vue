@@ -7,7 +7,7 @@
         <TaskItem :task="aMessage" />
       </li>
     </transition-group>
-   <AddTask @addNewTask="addTask"/>
+    <AddTask @addNewTask="addTasks" />
   </div>
 </template>
 <script lang="ts">
@@ -42,6 +42,10 @@ export default defineComponent({
   },
   data() {
     return {
+      time: '',
+      text: '',
+      title: '',
+
       aMessages: [
         {
           title: 'quam dicta',
@@ -66,18 +70,21 @@ export default defineComponent({
       ],
     };
   },
-// methods: {
-//     addTask() {
-//       this.aMessages.push({...this.newTask});
-//       this.newTask = {
-//         time: '',
-//         text: '',
-//         title: '',
-//       };
-//     },
-//   },
-
-
+  methods: {
+    // addTasks (data) {
+    //   console.log('child component said login', data)
+    // }
+    addTasks(data) {
+      this.aMessages.push(data);
+      return {
+        newTask: {
+          time: '',
+          text: '',
+          title: '',
+        },
+      };
+    },
+  },
 
   // methods: {
   //   addTask() {
@@ -164,7 +171,7 @@ section {
   margin-right: 30px;
 }
 ///////////////
-.list_tasks > :nth-last-child(2) {
+.list_tasks > li:nth-last-child(1) {
   font-family: 'Clip';
   font-size: 16px;
 }
@@ -185,7 +192,7 @@ section {
   }
 }
 
-.list_tasks > :nth-last-child(1) {
+.list_tasks > li:nth-last-child(1) * {
   animation: shine 2s forwards;
   animation: shine 0s forwards, blink 2s 0s 1;
 }
@@ -204,7 +211,6 @@ section {
 //     color: rgba(34, 34, 34, 0);
 //   }
 // }
-
 
 ///////////////////////////////////////////
 .list_tasks {
@@ -226,5 +232,4 @@ section {
   color: #337ab7;
   content: '\2605';
 }
-
 </style>
